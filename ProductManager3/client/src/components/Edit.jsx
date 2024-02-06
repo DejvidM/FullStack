@@ -12,12 +12,14 @@ const Edit = () => {
     });
 
     const handleForm = (e) => {
-        e.preventDefault();
-        axios.patch(`http://localhost:8000/edit/${title}` , updatedP)
-            .then(res => console.log(res))
+        e.preventDefault(); 
+        updatedP.title.length < 2 || updatedP.price < 1 || updatedP.description.length < 10
+        ?  setUpdatedP({title : '' , price : '' , description : ''})
+        : axios.patch(`http://localhost:8000/edit/${title}` , updatedP)
+            .then(res => {setUpdatedP({title : '' , price : '' , description : ''});
+                            navigate('/')})
             .catch(err => console.log(err))
-        setUpdatedP({title : '' , price : '' , description : ''});
-        navigate('/');
+        
     }
     const removeProduct = () => {
         axios.delete(`http://localhost:8000/api/${title}`)
