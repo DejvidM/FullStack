@@ -26,7 +26,7 @@ module.exports.deleteOne = (req , res) => {
 }
 
 module.exports.updateOne = (req , res) => {
-    Product.updateOne({title : req.params.title} , req.body, {new : true})
+    Product.updateOne({title : req.params.title} , req.body, {runValidators : true})
         .then(updatedProduct => res.json(updatedProduct))
         .catch(err => res.json(err))
 }

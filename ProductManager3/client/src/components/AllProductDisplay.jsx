@@ -13,7 +13,7 @@ const AllProductDisplay = ({allProducts , setAllProducts}) => {
     }
     return (
         <>  
-            {allProducts.length > 0
+            {allProducts.length > 0 
             ?  <>{ allProducts.map((product,index) => 
                 <div style={{width : 'fit-content',margin : '0px auto', display : 'flex' , alignItems : 'center'}}  key={product._id}>
                 <Link to={`/api/details/${product.title}`}><p style={{marginRight :'20px'}}>{product.title}</p> 
