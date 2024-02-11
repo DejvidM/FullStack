@@ -16,9 +16,9 @@ const View = () => {
         <>  
             {info 
             ? <div style={{width : 'fit-content' , margin : '0px auto'}}>
-            <h1>{info.title}</h1>
-            <p>{info.price}</p>
-            <p>{info.description}</p>
+            <h1>Title of product :{info.title}</h1>
+            <p>Price : {info.price}</p>
+            <p>Description : {info.description}</p>
             </div>
             : <p>Waiting</p>}
             <Link to={'/'}>Go Back</Link>

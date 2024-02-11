@@ -1,26 +1,9 @@
 import React, { useState } from "react";
-import axios from 'axios';
 
-const ProductForm = ({allProducts , setAllProducts}) => {
-    const [product , setProduct] = useState({
-        title : '' ,
-        price : '' ,
-        description : ''
-    });
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        product.title.length < 2 || product.price < 1 || product.description.length < 10
-        ? setProduct({title : '' , price : '' , description : ''}) 
-        :   axios.post('http://localhost:8000/api', product )
-                .then( res =>{setAllProducts([...allProducts , product]);
-                            setProduct({title : '' , price : '' , description : ''}) })
-                .catch( err => console.log(err));
-            
-        }
-
+const ProductForm = ({product,setProduct,formSubmiter}) => {
+    
     return(
-        <form onSubmit={handleSubmit} style={{margin : '0px auto' , width : 'fit-content' , display : 'flex' , flexDirection : 'column',
+        <form onSubmit={formSubmiter} style={{margin : '0px auto' , width : 'fit-content' , display : 'flex' , flexDirection : 'column',
                                                 alignItems : 'center'}}>
             <h1>Product Menager</h1>
             <div>

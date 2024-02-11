@@ -10,11 +10,12 @@ const Edit = () => {
         price : '',
         description : ''
     });
+    const [state , setState] = useState('');
 
     const handleForm = (e) => {
         e.preventDefault(); 
         updatedP.title.length < 2 || updatedP.price < 1 || updatedP.description.length < 10
-        ?  setUpdatedP({title : '' , price : '' , description : ''})
+        ? (setUpdatedP({title : '' , price : '' , description : ''}), setState(true))
         : axios.patch(`http://localhost:8000/edit/${title}` , updatedP)
             .then(res => {setUpdatedP({title : '' , price : '' , description : ''});
                             navigate('/')})
@@ -32,6 +33,7 @@ const Edit = () => {
         <>
         <form onSubmit={handleForm}  style={{margin : '0px auto' , width : 'fit-content' , display : 'flex' , flexDirection : 'column',
                                                 alignItems : 'center' , fontSize : '1.2em' }}>
+            {state ? <h1>Put the correct parameters</h1> : ''}
             <label>Set new Title for {title}</label>
             <input type="text" value={updatedP.title} onChange={(e) => setUpdatedP({...updatedP , title : e.target.value})}/>
             <label>Set new Price {title}</label>
